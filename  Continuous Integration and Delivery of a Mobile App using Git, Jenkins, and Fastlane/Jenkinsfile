@@ -1,0 +1,23 @@
+// Jenkinsfile
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                sh 'python -m pip install kivy'
+                sh 'python main.py'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'python -m pytest tests'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'fastlane deploy'
+            }
+        }
+    }
+}

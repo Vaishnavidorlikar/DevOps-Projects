@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tensorflow-serving-mnist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tensorflow-serving-mnist
+  template:
+    metadata:
+      labels:
+        app: tensorflow-serving-mnist
+    spec:
+      containers:
+      - name: tensorflow-serving-mnist
+        image: tensorflow-serving-mnist:latest
+        ports:
+        - containerPort: 8500

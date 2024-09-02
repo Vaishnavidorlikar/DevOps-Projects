@@ -1,0 +1,43 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  serviceMonitorSelector:
+    matchLabels:
+      app: my-web-app
+
+---
+apiVersion: integreatly.com/v1alpha1
+kind: Grafana
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+
+---
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+metadata:
+  name: elasticsearch
+spec:
+  version: 7.10.2
+  nodeSets:
+  - name: default
+    count: 1
+    config:
+      node.master: true
+      node.data: true
+      node.ingest: true
+
+---
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+spec:
+  version: 7.10.2
+  count: 1
+  elasticsearchRef:
+    name: elasticsearch

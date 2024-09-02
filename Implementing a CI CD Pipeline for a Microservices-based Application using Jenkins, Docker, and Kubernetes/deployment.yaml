@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: your-microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: your-microservice
+  template:
+    metadata:
+      labels:
+        app: your-microservice
+    spec:
+      containers:
+      - name: your-microservice
+        image: your-docker-username/your-image-name:${BUILD_NUMBER}
+        ports:
+        - containerPort: 8080

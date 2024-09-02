@@ -1,0 +1,3 @@
+logstash -f logstash.conf
+elasticsearch
+kibana

@@ -1,0 +1,10 @@
+# Fastfile
+lane :deploy do
+  # Code signing and distribution to the app store
+  produce(
+    app_identifier: "com.example.myapp",
+    username: "your_username",
+    password: "your_password"
+  )
+  upload_to_app_store
+end

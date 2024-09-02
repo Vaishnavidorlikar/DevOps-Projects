@@ -1,0 +1,3 @@
+kubectl apply -f deployment.yaml
+kubectl apply -f horizontal-pod-autoscaler.yaml
+kubectl get svc

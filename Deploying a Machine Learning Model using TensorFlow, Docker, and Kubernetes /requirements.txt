@@ -1,0 +1,5 @@
+tensorflow-serving-api
+docker build -t tensorflow-serving-mnist 
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl scale deployment tensorflow-serving-mnist --replicas=3
